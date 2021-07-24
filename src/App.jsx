@@ -4,7 +4,7 @@ import './App.scss';
 import ContactList from './components/ContactList';
 import ContactForm from './components/ContactForm';
 import Filter from './components/Filter';
-class  extends Component {
+class App extends Component {
   state = {
     contacts: [
       { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
