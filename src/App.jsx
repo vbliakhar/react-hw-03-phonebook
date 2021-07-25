@@ -25,7 +25,7 @@ class App extends Component {
       contact => contact.name.toLocaleLowerCase() === name.toLocaleLowerCase(),
     );
     if (sameName) {
-      alert(`${name}is already in contacts.`);
+      alert(`${name} is already in contacts.`);
     } else {
       const addContacts = {
         id: shortid.generate(),
@@ -48,6 +48,25 @@ class App extends Component {
       contact.name.toLowerCase().includes(normalizedFilter),
     );
   };
+  componentDidMount() {
+    console.log('Component Did Mount');
+    const contacts = localStorage.getItem('contacts');
+    const parsedContacts = JSON.parse(contacts);
+    if (parsedContacts) {
+      this.setState({ contacts: parsedContacts });
+    }
+
+    console.log(parsedContacts);
+  }
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.contacts !== this.state.contacts) {
+      localStorage.setItem('contacts', JSON.stringify(this.state.contacts));
+      console.log('Update  field contacts');
+    }
+    console.log(prevState);
+    console.log(this.state);
+  }
+
   render() {
     const { filter } = this.state;
 
